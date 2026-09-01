@@ -1,0 +1,14 @@
+{
+  "name": "da-block-library-mcp",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Read-only MCP server exposing da-block-collection block/UE metadata to da.live Experience Workspace",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.0"
+  }
+}
