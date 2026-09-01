@@ -347,6 +347,36 @@
           }
         },
         {
+          "title": "Testimonial",
+          "id": "testimonial",
+          "model": "testimonial",
+          "plugins": {
+            "da": {
+              "name": "testimonial",
+              "rows": 3,
+              "columns": 0,
+              "fields": [
+                {
+                  "name": "avatar",
+                  "selector": "div:nth-child(1)>div>picture>img[src]"
+                },
+                {
+                  "name": "avatarAlt",
+                  "selector": "div:nth-child(1)>div>picture>img[alt]"
+                },
+                {
+                  "name": "quote",
+                  "selector": "div:nth-child(2)>div"
+                },
+                {
+                  "name": "name",
+                  "selector": "div:nth-child(3)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Video",
           "id": "video",
           "model": "video",

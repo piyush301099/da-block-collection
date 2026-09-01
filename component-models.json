@@ -251,6 +251,36 @@
     ]
   },
   {
+    "id": "testimonial",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "avatar",
+        "label": "Avatar Image"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "avatarAlt",
+        "label": "Avatar Alt"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "quote",
+        "label": "Quote",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Name"
+      }
+    ]
+  },
+  {
     "id": "video",
     "fields": [
       {

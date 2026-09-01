@@ -3,9 +3,10 @@ import { exec } from "node:child_process";
 const run = (cmd) => new Promise((resolve, reject) => exec(
   cmd,
   (error, stdout, stderr) => {
-    if (error) reject();
-    if (stderr) reject(stderr);
-    resolve(stdout);
+    // Only a non-zero exit is a real failure; git/npm also write benign
+    // advisories (e.g. CRLF line-ending notices) to stderr on success.
+    if (error) reject(stderr || error);
+    else resolve(stdout);
   }
 ));
 

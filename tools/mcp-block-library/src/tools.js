@@ -265,7 +265,10 @@ export async function getBlockMarkdownTemplate({
     );
   }
 
-  const rows = buildItemRows(mergedFields(component, models), plugin.columns || 0);
+  // A top-level block's own fields are selected relative to the block root, so each distinct
+  // nth-child group is a separate row (e.g. Quote's quote/author) — never columns of one row,
+  // unlike a container's repeating child item (e.g. Card), where `columns` is meaningful.
+  const rows = buildItemRows(mergedFields(component, models), 0);
   return textResult(`${renderTable(component.title, rows)}\n\n(Draft — confirm before saving into the document.)`);
 }
 

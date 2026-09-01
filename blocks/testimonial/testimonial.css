@@ -1,0 +1,42 @@
+.testimonial {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.testimonial-avatar {
+  margin: 0 auto 16px;
+  width: 96px;
+}
+
+.testimonial-avatar picture > img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-quote {
+  margin: 0;
+  font-size: 120%;
+}
+
+.testimonial-quote > :first-child::before {
+  content: "“";
+}
+
+.testimonial-quote > :last-child::after {
+  content: "”";
+}
+
+.testimonial-name {
+  display: block;
+  margin-top: 12px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.testimonial-name::before {
+  content: "— ";
+}
