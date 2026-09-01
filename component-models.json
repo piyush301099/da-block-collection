@@ -251,6 +251,65 @@
     ]
   },
   {
+    "id": "team",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      }
+    ]
+  },
+  {
+    "id": "team-member",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "photo",
+        "label": "Photo"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "photoAlt",
+        "label": "Photo Alt"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Name",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "role",
+        "label": "Role"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "bio",
+        "label": "Bio"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkedin",
+        "label": "LinkedIn URL"
+      }
+    ]
+  },
+  {
     "id": "testimonial",
     "fields": [
       {

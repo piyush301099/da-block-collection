@@ -347,6 +347,63 @@
           }
         },
         {
+          "title": "Team",
+          "id": "team",
+          "model": "team",
+          "filter": "team",
+          "plugins": {
+            "da": {
+              "fields": [
+                {
+                  "name": "title",
+                  "selector": "div:nth-child(1)>div"
+                },
+                {
+                  "name": "description",
+                  "selector": "div:nth-child(2)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Team Member",
+          "id": "team-member",
+          "model": "team-member",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 5,
+              "fields": [
+                {
+                  "name": "photo",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "photoAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "name",
+                  "selector": "div:nth-child(2)"
+                },
+                {
+                  "name": "role",
+                  "selector": "div:nth-child(3)"
+                },
+                {
+                  "name": "bio",
+                  "selector": "div:nth-child(4)"
+                },
+                {
+                  "name": "linkedin",
+                  "selector": "div:nth-child(5)>a[href]"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Testimonial",
           "id": "testimonial",
           "model": "testimonial",

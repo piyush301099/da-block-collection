@@ -254,13 +254,22 @@ export async function getBlockMarkdownTemplate({
     const oneItemRows = buildItemRows(mergedFields(child, models), childPlugin.columns || 0);
     const count = itemCount && itemCount > 0 ? itemCount : DEFAULT_ITEM_COUNT;
 
-    const allRows = [];
+    // A container can also own fields of its own (e.g. a "Team" section title/description
+    // alongside repeating Team Member items) — those come first as their own rows, same rule
+    // as any top-level block's own fields, before the repeated child rows.
+    const ownFields = mergedFields(component, models);
+    const ownRows = ownFields.length ? buildItemRows(ownFields, 0) : [];
+
+    const allRows = [...ownRows];
     for (let i = 0; i < count; i += 1) {
       allRows.push(...oneItemRows);
     }
 
+    const ownNote = ownFields.length
+      ? ` plus its own ${ownFields.map((field) => field.label || field.name).join(', ')} field(s)`
+      : '';
     return textResult(
-      `Assuming ${count} "${child.title}" item(s) (default; say how many you want if different):\n`
+      `Assuming ${count} "${child.title}" item(s) (default; say how many you want if different)${ownNote}:\n`
       + `${renderTable(component.title, allRows)}\n\n(Draft — confirm before saving into the document.)`,
     );
   }
