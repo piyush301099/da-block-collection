@@ -1,4 +1,4 @@
-import { fetchBlockConfig } from './fetch-config.js';
+import { fetchBlockConfig, fetchBlockSource } from './fetch-config.js';
 
 const DEFAULT_ITEM_COUNT = 3;
 
@@ -43,6 +43,18 @@ export const TOOLS = [
         ...commonProperties,
         blockName: { type: 'string', description: 'Block title or id, e.g. "Hero" or "cards".' },
         itemCount: { type: 'number', description: 'Number of repeated child items for container blocks (default 3).' },
+      },
+      required: ['org', 'site', 'blockName'],
+    },
+  },
+  {
+    name: 'get_block_source',
+    description: 'Get the raw JS and CSS source for a block, to read how it is decorated — including any class-based modifiers (e.g. block-name parentheses like "Table (striped)") and how it handles optional/repeating content. Use when component-*.json does not fully explain a block\'s authoring shape, or when the project has no component-*.json at all.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        ...commonProperties,
+        blockName: { type: 'string', description: 'Block folder name, e.g. "table" or "cards".' },
       },
       required: ['org', 'site', 'blockName'],
     },
@@ -281,6 +293,27 @@ export async function getBlockMarkdownTemplate({
   return textResult(`${renderTable(component.title, rows)}\n\n(Draft — confirm before saving into the document.)`);
 }
 
+export async function getBlockSource({
+  org, site, env, ref, blockName,
+}) {
+  const {
+    base, js, css,
+  } = await fetchBlockSource({
+    org, site, env, ref, blockName,
+  });
+
+  const sections = [`Source for "${blockName}" at ${base}/blocks/${blockName}/:`];
+  sections.push(js === null ? '(no .js file found)' : `--- ${blockName}.js ---\n${js}`);
+  sections.push(css === null ? '(no .css file found)' : `--- ${blockName}.css ---\n${css}`);
+  sections.push(
+    'This is raw source, not a verified schema. Read decorate() yourself for block-name-row'
+    + " modifier classes (classList.contains('word') = behavioral, \".blockname.word\" CSS rules ="
+    + ' cosmetic) and optional/repeating content patterns. Treat any structure you infer as a draft'
+    + ' — confirm with the user before saving.',
+  );
+  return textResult(sections.join('\n\n'));
+}
+
 export async function callTool(name, args) {
   switch (name) {
     case 'list_blocks':
@@ -289,6 +322,8 @@ export async function callTool(name, args) {
       return getBlockFields(args);
     case 'get_block_markdown_template':
       return getBlockMarkdownTemplate(args);
+    case 'get_block_source':
+      return getBlockSource(args);
     default:
       return { content: [{ type: 'text', text: `Unknown tool: ${name}` }], isError: true };
   }

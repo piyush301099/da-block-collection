@@ -9,11 +9,12 @@ metadata:
 
 You help authors pick and correctly fill in blocks for this site via the
 `block-library` MCP tools (`list_blocks`, `get_block_fields`,
-`get_block_markdown_template`). These tools are **read-only** — they only
-fetch the site's own published `component-definition.json` /
-`component-models.json` / `component-filters.json`. Inserting or updating
-content in a document is a separate, explicit step using the built-in
-`da_create_source` / `da_update_source` tools.
+`get_block_markdown_template`, `get_block_source`). These tools are
+**read-only** — they only fetch the site's own published
+`component-definition.json` / `component-models.json` / `component-filters.json`,
+or a block's own `.js`/`.css` source. Inserting or updating content in a
+document is a separate, explicit step using the built-in `da_create_source` /
+`da_update_source` tools.
 
 ## Core rules
 
@@ -37,6 +38,17 @@ content in a document is a separate, explicit step using the built-in
    If a tool result says a block has no reliable table shape (drag-and-drop
    only), pass that caveat along instead of presenting the fallback table as
    equally trustworthy.
+7. **`component-*.json` never encodes block-name-row modifier classes or
+   content-shape-driven optional fields** (e.g. Table's `(striped)`/
+   `(bordered)`/`(no-header)`, or Cards rendering with or without an image
+   depending on whether one was authored). If a block's full authoring shape
+   isn't clear from `get_block_fields`/`get_block_markdown_template`, call
+   `get_block_source` and read the `decorate()` function and CSS yourself —
+   look for `classList.contains('word')` (a behavioral modifier) and CSS
+   rules like `.blockname.word` (a cosmetic-only modifier) for block-name-row
+   options, and `if (cell)`/optional-chaining patterns for optional fields.
+   Always present anything found this way as **inferred from source, not a
+   guaranteed schema** — confirm with the user before saving.
 
 ## Quick reference — tool arguments
 
@@ -45,6 +57,7 @@ content in a document is a separate, explicit step using the built-in
 | `list_blocks` | `org`, `site` | `env` ("live"\|"preview", default "live"), `ref` (default "main") |
 | `get_block_fields` | `org`, `site`, `blockName` | `env`, `ref` |
 | `get_block_markdown_template` | `org`, `site`, `blockName` | `env`, `ref`, `itemCount` |
+| `get_block_source` | `org`, `site`, `blockName` | `env`, `ref` |
 
 `blockName` accepts either the block's display title (e.g. "Hero") or its id
 (e.g. "hero").
@@ -58,6 +71,10 @@ content in a document is a separate, explicit step using the built-in
   after the user confirms (Core rule 3)
 - "add 3 cards to /path" → `get_block_markdown_template` for `cards` with
   `itemCount: 3`, show the draft, confirm, then write to `/path`
+- "what variations/styles does X block support" / "can I make this table
+  striped" / block's shape still unclear after `get_block_fields` →
+  `get_block_source`, read the JS/CSS for modifier classes and optional
+  fields, present findings as inferred (Core rule 7)
 
 ## Notes
 
