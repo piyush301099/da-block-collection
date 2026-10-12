@@ -1,0 +1,31 @@
+/*
+ * Stress Import Block (TEST FIXTURE — not a real production block)
+ */
+
+.stress-import .stress-import-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.stress-import .stress-import-panel {
+  border: 1px solid #dadada;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.stress-import .stress-import-panel h3 {
+  font-size: var(--stress-import-heading-size, 28px);
+}
+
+.stress-import .stress-import-panel[data-size-variant='small'] {
+  padding: 8px;
+}
+
+.stress-import .stress-import-panel[data-size-variant='large'] {
+  padding: 24px;
+}
+
+.stress-import .stress-import-panel[data-icon-style='circle'] {
+  border-radius: 50%;
+}

@@ -28,7 +28,8 @@
       "product-recommendations",
       "stress-tokens",
       "stress-combo",
-      "stress-nested"
+      "stress-nested",
+      "stress-import"
     ]
   },
   {
@@ -68,6 +69,19 @@
   },
   {
     "id": "stress-combo",
+    "rte": {
+      "toolbar": {
+        "insert": [
+          "table"
+        ],
+        "sections": [
+          "insert"
+        ]
+      }
+    }
+  },
+  {
+    "id": "stress-import",
     "rte": {
       "toolbar": {
         "insert": [

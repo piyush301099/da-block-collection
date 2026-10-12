@@ -314,6 +314,25 @@
           }
         },
         {
+          "title": "Stress Import",
+          "id": "stress-import",
+          "model": "stress-import",
+          "filter": "stress-import",
+          "plugins": {
+            "da": {
+              "name": "stress-import",
+              "rows": 6,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "classes",
+                  "selector": ":scope"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Stress Nested",
           "id": "stress-nested",
           "model": "stress-nested",

@@ -103,6 +103,17 @@ document is a separate, explicit step using the built-in `da_create_source` /
    so the user can tell if something was skipped. If item-count-threshold
    behavior was also found (Core rule 7), list it as its own separate shape
    alongside the modifier combinations, not folded into the count.
+   **Full enumeration has a limit: if the modifier count makes the full
+   combination set impractically large to draft as a document (as a rule of
+   thumb, more than ~16 total combinations — i.e. more than 4 independent
+   modifiers), do not silently truncate.** Instead: (a) state the exact
+   modifier count and the true combination total (e.g. "12 independent
+   modifiers → 4,096 possible combinations"); (b) explain you're drafting a
+   reduced representative set instead — the default plus each modifier alone
+   — and name that choice explicitly as a deliberate reduction, not as "all
+   variations"; (c) offer to draft any specific additional combination
+   (e.g. two or three modifiers together) on request. Never present a
+   reduced set as if it were the complete enumeration.
 
 ## Quick reference — tool arguments
 

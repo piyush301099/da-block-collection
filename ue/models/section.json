@@ -54,7 +54,8 @@
         "product-recommendations",
         "stress-tokens",
         "stress-combo",
-        "stress-nested"
+        "stress-nested",
+        "stress-import"
       ]
     }
   ]

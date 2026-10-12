@@ -1,0 +1,321 @@
+{
+  "definitions": [
+    {
+      "title": "Stress Import",
+      "id": "stress-import",
+      "model": "stress-import",
+      "filter": "stress-import",
+      "plugins": {
+        "da": {
+          "name": "stress-import",
+          "rows": 6,
+          "columns": 1,
+          "fields": [
+            { "name": "classes", "selector": ":scope" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "stress-import",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes_batchSize",
+          "label": "Batch Size",
+          "description": "Controls how many stress-import panels are loaded per batch before the rest are deferred. Authored as a block-name-row modifier; the JS extracts the numeric value from the class name via regex rather than treating it as a simple on/off toggle.",
+          "options": [
+            { "name": "6 per batch", "value": "batch-size-6" },
+            { "name": "12 per batch", "value": "batch-size-12" },
+            { "name": "24 per batch", "value": "batch-size-24" },
+            { "name": "48 per batch", "value": "batch-size-48" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_headingScale",
+          "label": "Heading Font Size",
+          "description": "Sets the CSS custom property driving each panel's heading font size. Like Batch Size, this is a value-carrying modifier class (e.g. heading-scale-32px), not a boolean flag.",
+          "options": [
+            { "name": "20px", "value": "heading-scale-20px" },
+            { "name": "24px", "value": "heading-scale-24px" },
+            { "name": "28px", "value": "heading-scale-28px" },
+            { "name": "32px", "value": "heading-scale-32px" },
+            { "name": "40px", "value": "heading-scale-40px" }
+          ]
+        },
+
+        {
+          "component": "select",
+          "name": "classes_panelOneTarget",
+          "label": "Panel One — Link Target",
+          "description": "Whether links inside the first authored panel row open in the same browser tab or a new one. Part of a flat, positionally enumerated set of per-panel fields (one through six) rather than a repeating container/child-item structure.",
+          "options": [
+            { "name": "Same tab", "value": "panel-one-target-sametab" },
+            { "name": "New tab", "value": "panel-one-target-newtab" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelOneConfirm",
+          "label": "Panel One — Confirm Before Leaving",
+          "description": "Whether navigating away from Panel One prompts a confirmation dialog first.",
+          "options": [
+            { "name": "No confirmation", "value": "panel-one-confirm-no" },
+            { "name": "Confirm before leaving", "value": "panel-one-confirm-yes" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelOneIcon",
+          "label": "Panel One — Icon Style",
+          "description": "The shape treatment applied to any icon rendered inside Panel One.",
+          "options": [
+            { "name": "Circle", "value": "panel-one-icon-circle" },
+            { "name": "Square", "value": "panel-one-icon-square" },
+            { "name": "No icon frame", "value": "panel-one-icon-none" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelOneSize",
+          "label": "Panel One — Size Variant",
+          "description": "Overall padding/density treatment for Panel One, independent of the other five panels.",
+          "options": [
+            { "name": "Small", "value": "panel-one-size-small" },
+            { "name": "Medium", "value": "panel-one-size-medium" },
+            { "name": "Large", "value": "panel-one-size-large" }
+          ]
+        },
+
+        {
+          "component": "select",
+          "name": "classes_panelTwoTarget",
+          "label": "Panel Two — Link Target",
+          "description": "Whether links inside the second authored panel row open in the same browser tab or a new one.",
+          "options": [
+            { "name": "Same tab", "value": "panel-two-target-sametab" },
+            { "name": "New tab", "value": "panel-two-target-newtab" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelTwoConfirm",
+          "label": "Panel Two — Confirm Before Leaving",
+          "description": "Whether navigating away from Panel Two prompts a confirmation dialog first.",
+          "options": [
+            { "name": "No confirmation", "value": "panel-two-confirm-no" },
+            { "name": "Confirm before leaving", "value": "panel-two-confirm-yes" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelTwoIcon",
+          "label": "Panel Two — Icon Style",
+          "description": "The shape treatment applied to any icon rendered inside Panel Two.",
+          "options": [
+            { "name": "Circle", "value": "panel-two-icon-circle" },
+            { "name": "Square", "value": "panel-two-icon-square" },
+            { "name": "No icon frame", "value": "panel-two-icon-none" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelTwoSize",
+          "label": "Panel Two — Size Variant",
+          "description": "Overall padding/density treatment for Panel Two, independent of the other five panels.",
+          "options": [
+            { "name": "Small", "value": "panel-two-size-small" },
+            { "name": "Medium", "value": "panel-two-size-medium" },
+            { "name": "Large", "value": "panel-two-size-large" }
+          ]
+        },
+
+        {
+          "component": "select",
+          "name": "classes_panelThreeTarget",
+          "label": "Panel Three — Link Target",
+          "description": "Whether links inside the third authored panel row open in the same browser tab or a new one.",
+          "options": [
+            { "name": "Same tab", "value": "panel-three-target-sametab" },
+            { "name": "New tab", "value": "panel-three-target-newtab" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelThreeConfirm",
+          "label": "Panel Three — Confirm Before Leaving",
+          "description": "Whether navigating away from Panel Three prompts a confirmation dialog first.",
+          "options": [
+            { "name": "No confirmation", "value": "panel-three-confirm-no" },
+            { "name": "Confirm before leaving", "value": "panel-three-confirm-yes" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelThreeIcon",
+          "label": "Panel Three — Icon Style",
+          "description": "The shape treatment applied to any icon rendered inside Panel Three.",
+          "options": [
+            { "name": "Circle", "value": "panel-three-icon-circle" },
+            { "name": "Square", "value": "panel-three-icon-square" },
+            { "name": "No icon frame", "value": "panel-three-icon-none" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelThreeSize",
+          "label": "Panel Three — Size Variant",
+          "description": "Overall padding/density treatment for Panel Three, independent of the other five panels.",
+          "options": [
+            { "name": "Small", "value": "panel-three-size-small" },
+            { "name": "Medium", "value": "panel-three-size-medium" },
+            { "name": "Large", "value": "panel-three-size-large" }
+          ]
+        },
+
+        {
+          "component": "select",
+          "name": "classes_panelFourTarget",
+          "label": "Panel Four — Link Target",
+          "description": "Whether links inside the fourth authored panel row open in the same browser tab or a new one.",
+          "options": [
+            { "name": "Same tab", "value": "panel-four-target-sametab" },
+            { "name": "New tab", "value": "panel-four-target-newtab" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelFourConfirm",
+          "label": "Panel Four — Confirm Before Leaving",
+          "description": "Whether navigating away from Panel Four prompts a confirmation dialog first.",
+          "options": [
+            { "name": "No confirmation", "value": "panel-four-confirm-no" },
+            { "name": "Confirm before leaving", "value": "panel-four-confirm-yes" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelFourIcon",
+          "label": "Panel Four — Icon Style",
+          "description": "The shape treatment applied to any icon rendered inside Panel Four.",
+          "options": [
+            { "name": "Circle", "value": "panel-four-icon-circle" },
+            { "name": "Square", "value": "panel-four-icon-square" },
+            { "name": "No icon frame", "value": "panel-four-icon-none" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelFourSize",
+          "label": "Panel Four — Size Variant",
+          "description": "Overall padding/density treatment for Panel Four, independent of the other five panels.",
+          "options": [
+            { "name": "Small", "value": "panel-four-size-small" },
+            { "name": "Medium", "value": "panel-four-size-medium" },
+            { "name": "Large", "value": "panel-four-size-large" }
+          ]
+        },
+
+        {
+          "component": "select",
+          "name": "classes_panelFiveTarget",
+          "label": "Panel Five — Link Target",
+          "description": "Whether links inside the fifth authored panel row open in the same browser tab or a new one.",
+          "options": [
+            { "name": "Same tab", "value": "panel-five-target-sametab" },
+            { "name": "New tab", "value": "panel-five-target-newtab" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelFiveConfirm",
+          "label": "Panel Five — Confirm Before Leaving",
+          "description": "Whether navigating away from Panel Five prompts a confirmation dialog first.",
+          "options": [
+            { "name": "No confirmation", "value": "panel-five-confirm-no" },
+            { "name": "Confirm before leaving", "value": "panel-five-confirm-yes" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelFiveIcon",
+          "label": "Panel Five — Icon Style",
+          "description": "The shape treatment applied to any icon rendered inside Panel Five.",
+          "options": [
+            { "name": "Circle", "value": "panel-five-icon-circle" },
+            { "name": "Square", "value": "panel-five-icon-square" },
+            { "name": "No icon frame", "value": "panel-five-icon-none" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelFiveSize",
+          "label": "Panel Five — Size Variant",
+          "description": "Overall padding/density treatment for Panel Five, independent of the other five panels.",
+          "options": [
+            { "name": "Small", "value": "panel-five-size-small" },
+            { "name": "Medium", "value": "panel-five-size-medium" },
+            { "name": "Large", "value": "panel-five-size-large" }
+          ]
+        },
+
+        {
+          "component": "select",
+          "name": "classes_panelSixTarget",
+          "label": "Panel Six — Link Target",
+          "description": "Whether links inside the sixth authored panel row open in the same browser tab or a new one.",
+          "options": [
+            { "name": "Same tab", "value": "panel-six-target-sametab" },
+            { "name": "New tab", "value": "panel-six-target-newtab" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelSixConfirm",
+          "label": "Panel Six — Confirm Before Leaving",
+          "description": "Whether navigating away from Panel Six prompts a confirmation dialog first.",
+          "options": [
+            { "name": "No confirmation", "value": "panel-six-confirm-no" },
+            { "name": "Confirm before leaving", "value": "panel-six-confirm-yes" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelSixIcon",
+          "label": "Panel Six — Icon Style",
+          "description": "The shape treatment applied to any icon rendered inside Panel Six.",
+          "options": [
+            { "name": "Circle", "value": "panel-six-icon-circle" },
+            { "name": "Square", "value": "panel-six-icon-square" },
+            { "name": "No icon frame", "value": "panel-six-icon-none" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_panelSixSize",
+          "label": "Panel Six — Size Variant",
+          "description": "Overall padding/density treatment for Panel Six, independent of the other five panels.",
+          "options": [
+            { "name": "Small", "value": "panel-six-size-small" },
+            { "name": "Medium", "value": "panel-six-size-medium" },
+            { "name": "Large", "value": "panel-six-size-large" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "stress-import",
+      "rte": {
+        "toolbar": {
+          "insert": ["table"],
+          "sections": ["insert"]
+        }
+      }
+    }
+  ]
+}
