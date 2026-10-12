@@ -369,15 +369,11 @@
           "plugins": {
             "da": {
               "rows": 1,
-              "columns": 2,
+              "columns": 1,
               "fields": [
                 {
-                  "name": "itemTitle",
+                  "name": "itemContent",
                   "selector": "div:nth-child(1)"
-                },
-                {
-                  "name": "itemDescription",
-                  "selector": "div:nth-child(2)"
                 }
               ]
             }

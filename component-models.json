@@ -786,16 +786,10 @@
     "id": "stress-nested-item",
     "fields": [
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "itemTitle",
-        "label": "Item Title"
-      },
-      {
         "component": "richtext",
         "valueType": "string",
-        "name": "itemDescription",
-        "label": "Item Description"
+        "name": "itemContent",
+        "label": "Item Content"
       }
     ]
   },

@@ -42,7 +42,9 @@ document is a separate, explicit step using the built-in `da_create_source` /
    content-shape-driven optional fields** (e.g. Table's `(striped)`/
    `(bordered)`/`(no-header)`, or Cards rendering with or without an image
    depending on whether one was authored). There are three distinct author-
-   facing modifier mechanisms in this project — check all that apply:
+   facing modifier mechanisms in this project — check **all three, always,
+   independently of each other** (mechanism (b) does not depend on JS being
+   readable at all, so never skip it just because (c) was unavailable):
    (a) classic block-name-row parentheses (`Table (striped, bordered)`);
    (b) a UE model `select` field named `classes`/`classes_[suffix]`
    (documented in `ue/README.md`'s "Block Options Support" — UE combines the
@@ -65,6 +67,26 @@ document is a separate, explicit step using the built-in `da_create_source` /
    `dataset.align`/field anywhere), say explicitly that it is **currently
    unreachable/dead CSS** — not an authorable option — rather than describing
    it ambiguously as "CSS-driven."
+   **If `get_block_source`'s JS only imports from another module (e.g. a
+   `decorate()` that just calls a function imported from outside `blocks/`),
+   the real logic is not visible to you** — say so explicitly, do not infer
+   its behavior from CSS alone and present that inference as if it were the
+   full picture. In this situation `get_block_fields` becomes more important,
+   not less: it reads the UE model directly and is completely independent of
+   whether the JS is readable, so it can still reveal the full set of
+   `classes`/`classes_[suffix]` options (mechanism (b) above) even when
+   mechanism (c) is a dead end. Always call `get_block_fields` before
+   drafting content, regardless of what `get_block_source` did or didn't
+   show — never draft a generic/modifier-free example when a richer one is
+   sitting in the UE model.
+   **If the UE model (`get_block_fields`) and the real JS/CSS
+   (`get_block_source`) describe different shapes for the same block or
+   field** (e.g. the model implies a field is split into sub-parts but the
+   JS actually reads it as one flat value, or vice versa), this is model/
+   implementation drift, not a choice to silently pick one side of. The real
+   JS is what actually renders, so draft content matching what the JS does —
+   but also explicitly tell the user the UE model and the code disagree and
+   which one you followed, rather than quietly resolving the conflict.
    Always present anything found this way as **inferred from source, not a
    guaranteed schema** — confirm with the user before saving.
 8. **A `library-metadata` block's `name` cell is a catalog label only, never

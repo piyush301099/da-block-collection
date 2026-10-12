@@ -34,10 +34,9 @@
       "plugins": {
         "da": {
           "rows": 1,
-          "columns": 2,
+          "columns": 1,
           "fields": [
-            { "name": "itemTitle", "selector": "div:nth-child(1)" },
-            { "name": "itemDescription", "selector": "div:nth-child(2)" }
+            { "name": "itemContent", "selector": "div:nth-child(1)" }
           ]
         }
       }
@@ -59,16 +58,10 @@
       "id": "stress-nested-item",
       "fields": [
         {
-          "component": "text",
-          "valueType": "string",
-          "name": "itemTitle",
-          "label": "Item Title"
-        },
-        {
           "component": "richtext",
           "valueType": "string",
-          "name": "itemDescription",
-          "label": "Item Description"
+          "name": "itemContent",
+          "label": "Item Content"
         }
       ]
     }
