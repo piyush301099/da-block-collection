@@ -51,7 +51,10 @@
         "testimonial",
         "text",
         "video",
-        "product-recommendations"
+        "product-recommendations",
+        "stress-tokens",
+        "stress-combo",
+        "stress-nested"
       ]
     }
   ]

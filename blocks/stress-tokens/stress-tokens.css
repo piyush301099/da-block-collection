@@ -1,0 +1,525 @@
+/*
+ * Stress Tokens Block (TEST FIXTURE — not a real production block)
+ * Deliberately oversized CSS used to stress-test the block-library MCP's
+ * get_block_source tool against a large raw-source token payload. Simulates
+ * an accumulated, over-documented design-token stylesheet with many
+ * independent tile styles and responsive overrides.
+ */
+
+.stress-tokens {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ============================================================
+ * Tile 01
+ * ------------------------------------------------------------
+ * Design rationale: this tile represents the "informational" card
+ * treatment used across the dashboard surface area. It favors a low
+ * contrast background with a subtle border so that it recedes behind
+ * primary content while still being scannable as a distinct region.
+ * The hue below is intentionally parameterized via a custom property
+ * so downstream design-token tooling can retheme this tile without
+ * touching the rest of the rule. Hover state nudges the tile upward
+ * by 2px and deepens the shadow slightly to communicate interactivity
+ * without being distracting during normal scroll/read flows.
+ * ============================================================ */
+.stress-tokens .tile-01 {
+  --tile-hue: 0;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-01:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 02
+ * ------------------------------------------------------------
+ * Design rationale: a slightly warmer variant of Tile 01, used where
+ * the surrounding section already carries a cool palette and needs a
+ * point of warmth for visual balance. Padding/typography scale follows
+ * the same responsive curve as every other tile in this sheet so that
+ * authors can mix tiles freely within a single stress-tokens instance
+ * without introducing visible rhythm breaks between adjacent tiles.
+ * ============================================================ */
+.stress-tokens .tile-02 {
+  --tile-hue: 10;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-02:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 03
+ * ------------------------------------------------------------
+ * Design rationale: continues the hue rotation established by Tiles
+ * 01-02. Each subsequent tile in this file shifts hue by 10 degrees so
+ * that a full set forms a smooth rainbow when placed side by side in
+ * a demo page — useful for visually spot-checking that no two tiles
+ * accidentally collide on the same color bucket during design review.
+ * ============================================================ */
+.stress-tokens .tile-03 {
+  --tile-hue: 20;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-03:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 04
+ * ------------------------------------------------------------
+ * Design rationale: same structural treatment, next hue step. These
+ * repeated blocks intentionally mirror a common real-world anti
+ * pattern where a design system grows by copy-pasting a tile rule
+ * and changing one variable, rather than factoring out the shared
+ * declarations into a mixin or base class. That anti-pattern is part
+ * of what this fixture is meant to simulate for stress-testing.
+ * ============================================================ */
+.stress-tokens .tile-04 {
+  --tile-hue: 30;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-04:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 05
+ * ------------------------------------------------------------
+ * Design rationale: midpoint tile in the rotation. No functional
+ * differences from its neighbors beyond the hue step — included to
+ * keep the per-tile documentation block consistent in length across
+ * the whole file, which keeps the overall token-per-tile ratio
+ * predictable when estimating how big this file is in aggregate.
+ * ============================================================ */
+.stress-tokens .tile-05 {
+  --tile-hue: 40;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-05:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 06
+ * ------------------------------------------------------------
+ * Design rationale: continues the rotation past the halfway point of
+ * the visible spectrum. From here on, tiles trend toward cooler hues,
+ * which in the original (hypothetical) design system was used to
+ * signal a shift from "informational" to "secondary action" framing,
+ * even though no actual interactive behavior differs between tiles.
+ * ============================================================ */
+.stress-tokens .tile-06 {
+  --tile-hue: 50;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-06:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 07
+ * ------------------------------------------------------------
+ * Design rationale: same notes as Tile 06 apply here; the rationale
+ * text intentionally repeats itself near-verbatim across several
+ * tiles to simulate real documentation drift, where a team copies a
+ * comment block forward and only lightly edits it over time instead
+ * of rewriting it from scratch for every new addition to the sheet.
+ * ============================================================ */
+.stress-tokens .tile-07 {
+  --tile-hue: 60;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-07:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 08
+ * ------------------------------------------------------------
+ * Design rationale: identical structural reasoning to the tiles
+ * above; retained as its own documented block rather than collapsed
+ * into a loop so that this fixture's CSS realistically resembles a
+ * large legacy stylesheet rather than a deliberately generated one.
+ * ============================================================ */
+.stress-tokens .tile-08 {
+  --tile-hue: 70;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-08:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 09
+ * ------------------------------------------------------------
+ * Design rationale: identical structural reasoning to the tiles
+ * above; retained as its own documented block to keep the per-tile
+ * footprint uniform for easier token-count estimation.
+ * ============================================================ */
+.stress-tokens .tile-09 {
+  --tile-hue: 80;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-09:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Tile 10
+ * ------------------------------------------------------------
+ * Design rationale: closes out the first batch of ten tiles. The
+ * responsive overrides below apply uniformly across tiles 01-10 at
+ * three breakpoints, which triples the effective line count for this
+ * section without changing its functional behavior meaningfully.
+ * ============================================================ */
+.stress-tokens .tile-10 {
+  --tile-hue: 90;
+  background-color: hsl(var(--tile-hue) 70% 95%);
+  border: 1px solid hsl(var(--tile-hue) 40% 70%);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0 0 0 / 8%);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stress-tokens .tile-10:hover {
+  box-shadow: 0 4px 10px rgba(0 0 0 / 12%);
+  transform: translateY(-2px);
+}
+
+@media (width >= 600px) {
+  .stress-tokens .tile-01,
+  .stress-tokens .tile-02,
+  .stress-tokens .tile-03,
+  .stress-tokens .tile-04,
+  .stress-tokens .tile-05,
+  .stress-tokens .tile-06,
+  .stress-tokens .tile-07,
+  .stress-tokens .tile-08,
+  .stress-tokens .tile-09,
+  .stress-tokens .tile-10 {
+    padding: 20px;
+    font-size: var(--body-font-size-m);
+  }
+}
+
+@media (width >= 900px) {
+  .stress-tokens .tile-01,
+  .stress-tokens .tile-02,
+  .stress-tokens .tile-03,
+  .stress-tokens .tile-04,
+  .stress-tokens .tile-05,
+  .stress-tokens .tile-06,
+  .stress-tokens .tile-07,
+  .stress-tokens .tile-08,
+  .stress-tokens .tile-09,
+  .stress-tokens .tile-10 {
+    padding: 24px;
+  }
+}
+
+@media (width >= 1200px) {
+  .stress-tokens .tile-01,
+  .stress-tokens .tile-02,
+  .stress-tokens .tile-03,
+  .stress-tokens .tile-04,
+  .stress-tokens .tile-05,
+  .stress-tokens .tile-06,
+  .stress-tokens .tile-07,
+  .stress-tokens .tile-08,
+  .stress-tokens .tile-09,
+  .stress-tokens .tile-10 {
+    padding: 28px;
+    font-size: var(--body-font-size-l);
+  }
+}
+
+/* ============================================================
+ * Tile 11
+ * ------------------------------------------------------------
+ * Design rationale: begins a second batch of ten tiles (11-20) that
+ * swap the base shape from rounded corners to a sharper, "data-dense"
+ * treatment intended for tabular/report-style sections. Border radius
+ * drops to 2px and padding is tightened slightly compared to the
+ * rounded batch above, while still sharing the same hue-rotation
+ * approach for visual consistency across the whole design system.
+ * ============================================================ */
+.stress-tokens .tile-11 {
+  --tile-hue: 100;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 12
+ * ------------------------------------------------------------
+ * Design rationale: same dense treatment as Tile 11, next hue step.
+ * ============================================================ */
+.stress-tokens .tile-12 {
+  --tile-hue: 110;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 13
+ * ------------------------------------------------------------
+ * Design rationale: same dense treatment as Tile 11, next hue step.
+ * ============================================================ */
+.stress-tokens .tile-13 {
+  --tile-hue: 120;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 14
+ * ------------------------------------------------------------
+ * Design rationale: same dense treatment as Tile 11, next hue step.
+ * ============================================================ */
+.stress-tokens .tile-14 {
+  --tile-hue: 130;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 15
+ * ------------------------------------------------------------
+ * Design rationale: same dense treatment as Tile 11, next hue step.
+ * ============================================================ */
+.stress-tokens .tile-15 {
+  --tile-hue: 140;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 16
+ * ------------------------------------------------------------
+ * Design rationale: same dense treatment as Tile 11, next hue step.
+ * ============================================================ */
+.stress-tokens .tile-16 {
+  --tile-hue: 150;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 17
+ * ------------------------------------------------------------
+ * Design rationale: same dense treatment as Tile 11, next hue step.
+ * ============================================================ */
+.stress-tokens .tile-17 {
+  --tile-hue: 160;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 18
+ * ------------------------------------------------------------
+ * Design rationale: same dense treatment as Tile 11, next hue step.
+ * ============================================================ */
+.stress-tokens .tile-18 {
+  --tile-hue: 170;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 19
+ * ------------------------------------------------------------
+ * Design rationale: same dense treatment as Tile 11, next hue step.
+ * ============================================================ */
+.stress-tokens .tile-19 {
+  --tile-hue: 180;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Tile 20
+ * ------------------------------------------------------------
+ * Design rationale: closes out the second batch of ten tiles.
+ * ============================================================ */
+.stress-tokens .tile-20 {
+  --tile-hue: 190;
+  background-color: hsl(var(--tile-hue) 60% 96%);
+  border: 1px solid hsl(var(--tile-hue) 35% 65%);
+  border-radius: 2px;
+  padding: 12px;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0 0 0 / 4%);
+}
+
+/* ============================================================
+ * Modifier: emphasis
+ * ------------------------------------------------------------
+ * Independent, block-name-row-authorable visual modifier. Authored
+ * as "Stress Tokens (emphasis)". Behavioral — referenced in JS.
+ * ============================================================ */
+.stress-tokens.emphasis .tile-01,
+.stress-tokens.emphasis .tile-02,
+.stress-tokens.emphasis .tile-03 {
+  border-width: 2px;
+  font-weight: 700;
+}
+
+/* ============================================================
+ * Modifier: compact
+ * ------------------------------------------------------------
+ * Independent, block-name-row-authorable visual modifier. Authored
+ * as "Stress Tokens (compact)". Cosmetic-only — CSS-only, no JS.
+ * ============================================================ */
+.stress-tokens.compact .tile-01,
+.stress-tokens.compact .tile-02,
+.stress-tokens.compact .tile-03,
+.stress-tokens.compact .tile-04,
+.stress-tokens.compact .tile-05 {
+  padding: 8px;
+  line-height: 1.2;
+}
+
+/* ============================================================
+ * Unreachable hook (deliberate — tests "dead CSS" detection)
+ * ------------------------------------------------------------
+ * Nothing in stress-tokens.js ever sets data-emphasis-level, and no
+ * UE model field maps to it either. This selector can never match.
+ * ============================================================ */
+.stress-tokens .tile-01[data-emphasis-level='high'] {
+  outline: 2px dashed red;
+}

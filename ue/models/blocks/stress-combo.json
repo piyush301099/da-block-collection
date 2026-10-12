@@ -1,0 +1,57 @@
+{
+  "definitions": [
+    {
+      "title": "Stress Combo",
+      "id": "stress-combo",
+      "model": "stress-combo",
+      "filter": "stress-combo",
+      "plugins": {
+        "da": {
+          "name": "stress-combo",
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "classes", "selector": ":scope" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "stress-combo",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Modifiers",
+          "options": [
+            { "name": "Mod A", "value": "mod-a" },
+            { "name": "Mod B", "value": "mod-b" },
+            { "name": "Mod C", "value": "mod-c" },
+            { "name": "Mod D", "value": "mod-d" },
+            { "name": "Mod E", "value": "mod-e" },
+            { "name": "Mod F", "value": "mod-f" },
+            { "name": "Mod G", "value": "mod-g" },
+            { "name": "Mod H", "value": "mod-h" },
+            { "name": "Mod I", "value": "mod-i" },
+            { "name": "Mod J", "value": "mod-j" },
+            { "name": "Mod K", "value": "mod-k" },
+            { "name": "Mod L", "value": "mod-l" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "stress-combo",
+      "rte": {
+        "toolbar": {
+          "insert": ["table"],
+          "sections": ["insert"]
+        }
+      }
+    }
+  ]
+}

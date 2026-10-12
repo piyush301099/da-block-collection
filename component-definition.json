@@ -295,6 +295,95 @@
           }
         },
         {
+          "title": "Stress Combo",
+          "id": "stress-combo",
+          "model": "stress-combo",
+          "filter": "stress-combo",
+          "plugins": {
+            "da": {
+              "name": "stress-combo",
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "classes",
+                  "selector": ":scope"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Stress Nested",
+          "id": "stress-nested",
+          "model": "stress-nested",
+          "filter": "stress-nested",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Stress Nested Group",
+          "id": "stress-nested-group",
+          "model": "stress-nested-group",
+          "filter": "stress-nested-group",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "groupTitle",
+                  "selector": "div:nth-child(1)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Stress Nested Item",
+          "id": "stress-nested-item",
+          "model": "stress-nested-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "itemTitle",
+                  "selector": "div:nth-child(1)"
+                },
+                {
+                  "name": "itemDescription",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Stress Tokens",
+          "id": "stress-tokens",
+          "model": "stress-tokens",
+          "filter": "stress-tokens",
+          "plugins": {
+            "da": {
+              "name": "stress-tokens",
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "classes",
+                  "selector": ":scope"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Table",
           "id": "table",
           "model": "table",

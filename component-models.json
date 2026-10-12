@@ -223,6 +223,114 @@
     ]
   },
   {
+    "id": "stress-combo",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Modifiers",
+        "options": [
+          {
+            "name": "Mod A",
+            "value": "mod-a"
+          },
+          {
+            "name": "Mod B",
+            "value": "mod-b"
+          },
+          {
+            "name": "Mod C",
+            "value": "mod-c"
+          },
+          {
+            "name": "Mod D",
+            "value": "mod-d"
+          },
+          {
+            "name": "Mod E",
+            "value": "mod-e"
+          },
+          {
+            "name": "Mod F",
+            "value": "mod-f"
+          },
+          {
+            "name": "Mod G",
+            "value": "mod-g"
+          },
+          {
+            "name": "Mod H",
+            "value": "mod-h"
+          },
+          {
+            "name": "Mod I",
+            "value": "mod-i"
+          },
+          {
+            "name": "Mod J",
+            "value": "mod-j"
+          },
+          {
+            "name": "Mod K",
+            "value": "mod-k"
+          },
+          {
+            "name": "Mod L",
+            "value": "mod-l"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stress-nested-group",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "groupTitle",
+        "label": "Group Title"
+      }
+    ]
+  },
+  {
+    "id": "stress-nested-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "itemTitle",
+        "label": "Item Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "itemDescription",
+        "label": "Item Description"
+      }
+    ]
+  },
+  {
+    "id": "stress-tokens",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Emphasis",
+            "value": "emphasis"
+          },
+          {
+            "name": "Compact",
+            "value": "compact"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "table",
     "fields": [
       {

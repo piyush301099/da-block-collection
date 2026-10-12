@@ -1,0 +1,47 @@
+{
+  "definitions": [
+    {
+      "title": "Stress Tokens",
+      "id": "stress-tokens",
+      "model": "stress-tokens",
+      "filter": "stress-tokens",
+      "plugins": {
+        "da": {
+          "name": "stress-tokens",
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "classes", "selector": ":scope" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "stress-tokens",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "options": [
+            { "name": "Emphasis", "value": "emphasis" },
+            { "name": "Compact", "value": "compact" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "stress-tokens",
+      "rte": {
+        "toolbar": {
+          "insert": ["table"],
+          "sections": ["insert"]
+        }
+      }
+    }
+  ]
+}

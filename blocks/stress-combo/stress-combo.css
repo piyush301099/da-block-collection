@@ -1,0 +1,25 @@
+/*
+ * Stress Combo Block (TEST FIXTURE — not a real production block)
+ * 12 independent, freely combinable modifier classes (mod-a .. mod-l).
+ * Each is purely cosmetic here; stress-combo.js only mirrors which ones
+ * are active onto a data attribute for inspection, it doesn't branch on
+ * them structurally. Authored as "Stress Combo (mod-a, mod-c, mod-k)" etc.
+ */
+
+.stress-combo {
+  padding: 16px;
+  border: 1px solid #dadada;
+}
+
+.stress-combo.mod-a { background-color: #ffe8e8; }
+.stress-combo.mod-b { background-color: #fff2e0; }
+.stress-combo.mod-c { background-color: #fffbe0; }
+.stress-combo.mod-d { background-color: #eaffe0; }
+.stress-combo.mod-e { background-color: #e0fff2; }
+.stress-combo.mod-f { background-color: #e0f7ff; }
+.stress-combo.mod-g { background-color: #e0eaff; }
+.stress-combo.mod-h { background-color: #f0e0ff; }
+.stress-combo.mod-i { background-color: #ffe0f7; }
+.stress-combo.mod-j { font-weight: 700; }
+.stress-combo.mod-k { font-style: italic; }
+.stress-combo.mod-l { text-decoration: underline; }

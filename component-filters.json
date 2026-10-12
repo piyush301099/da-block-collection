@@ -25,7 +25,10 @@
       "testimonial",
       "text",
       "video",
-      "product-recommendations"
+      "product-recommendations",
+      "stress-tokens",
+      "stress-combo",
+      "stress-nested"
     ]
   },
   {
@@ -62,6 +65,44 @@
       "text",
       "image"
     ]
+  },
+  {
+    "id": "stress-combo",
+    "rte": {
+      "toolbar": {
+        "insert": [
+          "table"
+        ],
+        "sections": [
+          "insert"
+        ]
+      }
+    }
+  },
+  {
+    "id": "stress-nested",
+    "components": [
+      "stress-nested-group"
+    ]
+  },
+  {
+    "id": "stress-nested-group",
+    "components": [
+      "stress-nested-item"
+    ]
+  },
+  {
+    "id": "stress-tokens",
+    "rte": {
+      "toolbar": {
+        "insert": [
+          "table"
+        ],
+        "sections": [
+          "insert"
+        ]
+      }
+    }
   },
   {
     "id": "table",
