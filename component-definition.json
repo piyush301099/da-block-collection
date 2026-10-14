@@ -95,6 +95,32 @@
           }
         },
         {
+          "title": "Callout",
+          "id": "callout",
+          "model": "callout",
+          "plugins": {
+            "da": {
+              "name": "callout",
+              "rows": 2,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "heading",
+                  "selector": "div:nth-child(1)>div"
+                },
+                {
+                  "name": "description",
+                  "selector": "div:nth-child(2)>div"
+                },
+                {
+                  "name": "classes",
+                  "selector": ":scope"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Cards",
           "id": "cards",
           "model": "cards",

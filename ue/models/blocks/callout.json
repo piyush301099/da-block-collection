@@ -1,0 +1,73 @@
+{
+  "definitions": [
+    {
+      "title": "Callout",
+      "id": "callout",
+      "model": "callout",
+      "plugins": {
+        "da": {
+          "name": "callout",
+          "rows": 2,
+          "columns": 1,
+          "fields": [
+            { "name": "heading", "selector": "div:nth-child(1)>div" },
+            { "name": "description", "selector": "div:nth-child(2)>div" },
+            { "name": "classes", "selector": ":scope" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "callout",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "heading",
+          "label": "Heading",
+          "required": true
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "description",
+          "label": "Description"
+        },
+        {
+          "component": "select",
+          "name": "classes_theme",
+          "label": "Theme",
+          "options": [
+            { "name": "Light", "value": "theme-light" },
+            { "name": "Dark", "value": "theme-dark" },
+            { "name": "Brand", "value": "theme-brand" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_alignment",
+          "label": "Alignment",
+          "options": [
+            { "name": "Left", "value": "align-left" },
+            { "name": "Center", "value": "align-center" },
+            { "name": "Right", "value": "align-right" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_icon",
+          "label": "Icon",
+          "options": [
+            { "name": "None", "value": "icon-none" },
+            { "name": "Info", "value": "icon-info" },
+            { "name": "Warning", "value": "icon-warning" },
+            { "name": "Success", "value": "icon-success" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
