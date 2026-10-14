@@ -112,6 +112,29 @@
             "value": "theme-brand"
           }
         ]
+      },
+      {
+        "component": "select",
+        "name": "classes_icon",
+        "label": "Icon",
+        "options": [
+          {
+            "name": "None",
+            "value": "icon-none"
+          },
+          {
+            "name": "Info",
+            "value": "icon-info"
+          },
+          {
+            "name": "Warning",
+            "value": "icon-warning"
+          },
+          {
+            "name": "Success",
+            "value": "icon-success"
+          }
+        ]
       }
     ]
   },

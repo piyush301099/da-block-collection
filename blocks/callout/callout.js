@@ -12,5 +12,16 @@ export default function decorate(block) {
   if (descriptionCell) description.append(...descriptionCell.childNodes);
 
   // theme variant (theme-light/theme-dark/theme-brand) is applied via CSS only, no JS needed
-  block.replaceChildren(heading, description);
+  // icon variant is authored as an icon-* modifier class on the block itself, same as video's classes_autoplay
+  const iconClass = [...block.classList].find((c) => c.startsWith('icon-'));
+  const iconType = iconClass ? iconClass.replace('icon-', '') : 'none';
+
+  block.replaceChildren();
+  if (iconType !== 'none') {
+    const icon = document.createElement('span');
+    icon.className = `callout-icon callout-icon-${iconType}`;
+    icon.setAttribute('aria-hidden', 'true');
+    block.append(icon);
+  }
+  block.append(heading, description);
 }
