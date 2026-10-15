@@ -95,44 +95,47 @@
         "label": "Description"
       },
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
-        "label": "Theme",
+        "label": "Style",
+        "description": "Select a theme and optionally an icon for this callout",
+        "value": [
+          "theme-light"
+        ],
         "options": [
           {
-            "name": "Light",
-            "value": "theme-light"
+            "name": "Theme",
+            "children": [
+              {
+                "name": "Light",
+                "value": "theme-light"
+              },
+              {
+                "name": "Dark",
+                "value": "theme-dark"
+              },
+              {
+                "name": "Brand",
+                "value": "theme-brand"
+              }
+            ]
           },
           {
-            "name": "Dark",
-            "value": "theme-dark"
-          },
-          {
-            "name": "Brand",
-            "value": "theme-brand"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "classes_icon",
-        "label": "Icon",
-        "options": [
-          {
-            "name": "None",
-            "value": "icon-none"
-          },
-          {
-            "name": "Info",
-            "value": "icon-info"
-          },
-          {
-            "name": "Warning",
-            "value": "icon-warning"
-          },
-          {
-            "name": "Success",
-            "value": "icon-success"
+            "name": "Icon",
+            "children": [
+              {
+                "name": "Info",
+                "value": "icon-info"
+              },
+              {
+                "name": "Warning",
+                "value": "icon-warning"
+              },
+              {
+                "name": "Success",
+                "value": "icon-success"
+              }
+            ]
           }
         ]
       }
