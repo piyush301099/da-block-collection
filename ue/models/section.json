@@ -55,7 +55,9 @@
         "stress-tokens",
         "stress-combo",
         "stress-nested",
-        "stress-import"
+        "stress-import",
+        "poc-pull-quote",
+        "poc-classes-spike"
       ]
     }
   ]

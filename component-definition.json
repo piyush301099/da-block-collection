@@ -277,6 +277,54 @@
           }
         },
         {
+          "title": "POC Classes Spike",
+          "id": "poc-classes-spike",
+          "model": "poc-classes-spike",
+          "plugins": {
+            "da": {
+              "unsafeHTML": "<div class=\"poc-classes-spike\"><div><div><p></p></div></div></div>",
+              "fields": [
+                {
+                  "name": "text",
+                  "selector": "div:nth-child(1)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "POC Pull Quote",
+          "id": "poc-pull-quote",
+          "model": "poc-pull-quote",
+          "plugins": {
+            "da": {
+              "unsafeHTML": "<div class=\"poc-pull-quote\"><div><div><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture></div></div><div><div><p></p></div></div><div><div><p></p><p></p></div></div></div>",
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>div>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>div>picture>img[alt]"
+                },
+                {
+                  "name": "quote",
+                  "selector": "div:nth-child(2)>div"
+                },
+                {
+                  "name": "pullquote_authortext",
+                  "selector": "div:nth-child(3)>div>p:nth-child(1)"
+                },
+                {
+                  "name": "pullquote_authortitle",
+                  "selector": "div:nth-child(3)>div>p:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Quote",
           "id": "quote",
           "model": "quote",

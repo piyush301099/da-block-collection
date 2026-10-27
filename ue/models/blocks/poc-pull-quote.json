@@ -1,0 +1,122 @@
+{
+  "definitions": [
+    {
+      "title": "POC Pull Quote",
+      "id": "poc-pull-quote",
+      "model": "poc-pull-quote",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div class=\"poc-pull-quote\"><div><div><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture></div></div><div><div><p></p></div></div><div><div><p></p><p></p></div></div></div>",
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>div>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>div>picture>img[alt]" },
+            { "name": "quote", "selector": "div:nth-child(2)>div" },
+            { "name": "pullquote_authortext", "selector": "div:nth-child(3)>div>p:nth-child(1)" },
+            { "name": "pullquote_authortitle", "selector": "div:nth-child(3)>div>p:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "poc-pull-quote",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes_componenttype",
+          "label": "Component Type",
+          "description": "Select layout of quote block",
+          "value": "image-none",
+          "options": [
+            { "name": "No Image", "value": "image-none" },
+            { "name": "With Image", "value": "image-quote-block" }
+          ]
+        },
+        {
+          "component": "container",
+          "name": "imagecontainer",
+          "label": "With image Field Details",
+          "valueType": "string",
+          "condition": {
+            "===": [{ "var": "classes_componenttype" }, "image-quote-block"]
+          },
+          "fields": [
+            {
+              "component": "select",
+              "name": "classes_imageposition",
+              "label": "Image Position",
+              "description": "Select the appropriate column for image placement",
+              "value": "align-left",
+              "valueType": "string",
+              "options": [
+                { "name": "Left", "value": "align-left" },
+                { "name": "Right", "value": "align-right" }
+              ]
+            },
+            {
+              "component": "reference",
+              "valueType": "string",
+              "name": "image",
+              "label": "Image",
+              "multi": false
+            },
+            {
+              "component": "text",
+              "valueType": "string",
+              "name": "imageAlt",
+              "label": "Image Alt text"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_alignment",
+          "label": "Alignment",
+          "description": "Select alignment of icon placed on top",
+          "condition": {
+            "===": [{ "var": "classes_componenttype" }, "image-none"]
+          },
+          "value": "icon-align-left",
+          "options": [
+            { "name": "Left", "value": "icon-align-left" },
+            { "name": "Center", "value": "icon-align-center" }
+          ]
+        },
+        {
+          "component": "richtext",
+          "name": "quote",
+          "label": "Quote",
+          "valueType": "string"
+        },
+        {
+          "component": "select",
+          "name": "classes_quotertefontsize",
+          "label": "Quote Font Size",
+          "description": "Select the font size for the quote",
+          "value": "quote-fs-36px",
+          "options": [
+            { "name": "60px", "value": "quote-fs-60px" },
+            { "name": "48px", "value": "quote-fs-48px" },
+            { "name": "36px", "value": "quote-fs-36px" },
+            { "name": "24px", "value": "quote-fs-24px" },
+            { "name": "16px", "value": "quote-fs-16px" }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "pullquote_authortext",
+          "label": "Author"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "pullquote_authortitle",
+          "label": "Author Title"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

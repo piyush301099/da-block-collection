@@ -1,0 +1,89 @@
+{
+  "definitions": [
+    {
+      "title": "POC Classes Spike",
+      "id": "poc-classes-spike",
+      "model": "poc-classes-spike",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div class=\"poc-classes-spike\"><div><div><p></p></div></div></div>",
+          "fields": [
+            { "name": "text", "selector": "div:nth-child(1)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "poc-classes-spike",
+      "fields": [
+        {
+          "component": "boolean",
+          "name": "classes_toggle",
+          "label": "A. classes_ boolean (documented)",
+          "valueType": "boolean"
+        },
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "B. classes multiselect (documented)",
+          "options": [
+            { "name": "Size S", "value": "size-s" },
+            { "name": "Size M", "value": "size-m" },
+            { "name": "Size L", "value": "size-l" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_variant",
+          "label": "C. classes_ select (undocumented)",
+          "value": "variant-a",
+          "options": [
+            { "name": "Variant A", "value": "variant-a" },
+            { "name": "Variant B", "value": "variant-b" }
+          ]
+        },
+        {
+          "component": "multiselect",
+          "name": "classes_multi",
+          "label": "D. classes_ multiselect (undocumented)",
+          "options": [
+            { "name": "Multi A", "value": "multi-a" },
+            { "name": "Multi B", "value": "multi-b" },
+            { "name": "Multi C", "value": "multi-c" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_ctatypetwo",
+          "label": "E. Lilly-style value (mixed case, underscore)",
+          "value": "ctaType-button_two",
+          "options": [
+            { "name": "Button two", "value": "ctaType-button_two" },
+            { "name": "Link two", "value": "ctaType-textLink_two" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "classes_conditional",
+          "label": "F. classes_ select shown only when C = Variant B",
+          "condition": {
+            "===": [{ "var": "classes_variant" }, "variant-b"]
+          },
+          "options": [
+            { "name": "Cond X", "value": "cond-x" },
+            { "name": "Cond Y", "value": "cond-y" }
+          ]
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Text",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
