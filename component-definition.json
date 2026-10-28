@@ -277,28 +277,12 @@
           }
         },
         {
-          "title": "POC Classes Spike",
-          "id": "poc-classes-spike",
-          "model": "poc-classes-spike",
+          "title": "POC Pull Quote (multiselect classes)",
+          "id": "poc-pull-quote-multi",
+          "model": "poc-pull-quote-multi",
           "plugins": {
             "da": {
-              "unsafeHTML": "<div class=\"poc-classes-spike\"><div><div><p></p></div></div></div>",
-              "fields": [
-                {
-                  "name": "text",
-                  "selector": "div:nth-child(1)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "POC Pull Quote",
-          "id": "poc-pull-quote",
-          "model": "poc-pull-quote",
-          "plugins": {
-            "da": {
-              "unsafeHTML": "<div class=\"poc-pull-quote\"><div><div><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture></div></div><div><div><p></p></div></div><div><div><p></p><p></p></div></div></div>",
+              "unsafeHTML": "<div class=\"poc-pull-quote-multi\"><div><div><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture></div></div><div><div><p></p></div></div><div><div><p></p><p></p></div></div></div>",
               "fields": [
                 {
                   "name": "image",
@@ -319,6 +303,10 @@
                 {
                   "name": "pullquote_authortitle",
                   "selector": "div:nth-child(3)>div>p:nth-child(2)"
+                },
+                {
+                  "name": "classes",
+                  "selector": ":scope"
                 }
               ]
             }

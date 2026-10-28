@@ -1,0 +1,86 @@
+{
+  "definitions": [
+    {
+      "title": "POC Pull Quote (multiselect classes)",
+      "id": "poc-pull-quote-multi",
+      "model": "poc-pull-quote-multi",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div class=\"poc-pull-quote-multi\"><div><div><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture></div></div><div><div><p></p></div></div><div><div><p></p><p></p></div></div></div>",
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>div>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>div>picture>img[alt]" },
+            { "name": "quote", "selector": "div:nth-child(2)>div" },
+            { "name": "pullquote_authortext", "selector": "div:nth-child(3)>div>p:nth-child(1)" },
+            { "name": "pullquote_authortitle", "selector": "div:nth-child(3)>div>p:nth-child(2)" },
+            { "name": "classes", "selector": ":scope" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "poc-pull-quote-multi",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Block options",
+          "description": "Pick at most one option per group (Type, Image position, Icon alignment, Font size). Unselected groups use defaults.",
+          "valueType": "string",
+          "options": [
+            { "name": "Type: No image", "value": "image-none" },
+            { "name": "Type: With image", "value": "image-quote-block" },
+            { "name": "Image position: Left", "value": "align-left" },
+            { "name": "Image position: Right", "value": "align-right" },
+            { "name": "Icon alignment (no image): Left", "value": "icon-align-left" },
+            { "name": "Icon alignment (no image): Center", "value": "icon-align-center" },
+            { "name": "Font size: 100px", "value": "quote-fs-100px" },
+            { "name": "Font size: 60px", "value": "quote-fs-60px" },
+            { "name": "Font size: 48px", "value": "quote-fs-48px" },
+            { "name": "Font size: 36px", "value": "quote-fs-36px" },
+            { "name": "Font size: 32px", "value": "quote-fs-32px" },
+            { "name": "Font size: 28px", "value": "quote-fs-28px" },
+            { "name": "Font size: 24px", "value": "quote-fs-24px" },
+            { "name": "Font size: 20px", "value": "quote-fs-20px" },
+            { "name": "Font size: 16px", "value": "quote-fs-16px" },
+            { "name": "Font size: 14px", "value": "quote-fs-14px" }
+          ]
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt text"
+        },
+        {
+          "component": "richtext",
+          "name": "quote",
+          "label": "Quote",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "pullquote_authortext",
+          "label": "Author"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "pullquote_authortitle",
+          "label": "Author Title"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

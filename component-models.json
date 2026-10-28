@@ -250,241 +250,99 @@
     ]
   },
   {
-    "id": "poc-classes-spike",
+    "id": "poc-pull-quote-multi",
     "fields": [
-      {
-        "component": "boolean",
-        "name": "classes_toggle",
-        "label": "A. classes_ boolean (documented)",
-        "valueType": "boolean"
-      },
       {
         "component": "multiselect",
         "name": "classes",
-        "label": "B. classes multiselect (documented)",
+        "label": "Block options",
+        "description": "Pick at most one option per group (Type, Image position, Icon alignment, Font size). Unselected groups use defaults.",
+        "valueType": "string",
         "options": [
           {
-            "name": "Size S",
-            "value": "size-s"
-          },
-          {
-            "name": "Size M",
-            "value": "size-m"
-          },
-          {
-            "name": "Size L",
-            "value": "size-l"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "classes_variant",
-        "label": "C. classes_ select (undocumented)",
-        "value": "variant-a",
-        "options": [
-          {
-            "name": "Variant A",
-            "value": "variant-a"
-          },
-          {
-            "name": "Variant B",
-            "value": "variant-b"
-          }
-        ]
-      },
-      {
-        "component": "multiselect",
-        "name": "classes_multi",
-        "label": "D. classes_ multiselect (undocumented)",
-        "options": [
-          {
-            "name": "Multi A",
-            "value": "multi-a"
-          },
-          {
-            "name": "Multi B",
-            "value": "multi-b"
-          },
-          {
-            "name": "Multi C",
-            "value": "multi-c"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "classes_ctatypetwo",
-        "label": "E. Lilly-style value (mixed case, underscore)",
-        "value": "ctaType-button_two",
-        "options": [
-          {
-            "name": "Button two",
-            "value": "ctaType-button_two"
-          },
-          {
-            "name": "Link two",
-            "value": "ctaType-textLink_two"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "classes_conditional",
-        "label": "F. classes_ select shown only when C = Variant B",
-        "condition": {
-          "===": [
-            {
-              "var": "classes_variant"
-            },
-            "variant-b"
-          ]
-        },
-        "options": [
-          {
-            "name": "Cond X",
-            "value": "cond-x"
-          },
-          {
-            "name": "Cond Y",
-            "value": "cond-y"
-          }
-        ]
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "poc-pull-quote",
-    "fields": [
-      {
-        "component": "select",
-        "name": "classes_componenttype",
-        "label": "Component Type",
-        "description": "Select layout of quote block",
-        "value": "image-none",
-        "options": [
-          {
-            "name": "No Image",
+            "name": "Type: No image",
             "value": "image-none"
           },
           {
-            "name": "With Image",
+            "name": "Type: With image",
             "value": "image-quote-block"
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "name": "imagecontainer",
-        "label": "With image Field Details",
-        "valueType": "string",
-        "condition": {
-          "===": [
-            {
-              "var": "classes_componenttype"
-            },
-            "image-quote-block"
-          ]
-        },
-        "fields": [
-          {
-            "component": "select",
-            "name": "classes_imageposition",
-            "label": "Image Position",
-            "description": "Select the appropriate column for image placement",
-            "value": "align-left",
-            "valueType": "string",
-            "options": [
-              {
-                "name": "Left",
-                "value": "align-left"
-              },
-              {
-                "name": "Right",
-                "value": "align-right"
-              }
-            ]
           },
           {
-            "component": "reference",
-            "valueType": "string",
-            "name": "image",
-            "label": "Image",
-            "multi": false
+            "name": "Image position: Left",
+            "value": "align-left"
           },
           {
-            "component": "text",
-            "valueType": "string",
-            "name": "imageAlt",
-            "label": "Image Alt text"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "classes_alignment",
-        "label": "Alignment",
-        "description": "Select alignment of icon placed on top",
-        "condition": {
-          "===": [
-            {
-              "var": "classes_componenttype"
-            },
-            "image-none"
-          ]
-        },
-        "value": "icon-align-left",
-        "options": [
+            "name": "Image position: Right",
+            "value": "align-right"
+          },
           {
-            "name": "Left",
+            "name": "Icon alignment (no image): Left",
             "value": "icon-align-left"
           },
           {
-            "name": "Center",
+            "name": "Icon alignment (no image): Center",
             "value": "icon-align-center"
+          },
+          {
+            "name": "Font size: 100px",
+            "value": "quote-fs-100px"
+          },
+          {
+            "name": "Font size: 60px",
+            "value": "quote-fs-60px"
+          },
+          {
+            "name": "Font size: 48px",
+            "value": "quote-fs-48px"
+          },
+          {
+            "name": "Font size: 36px",
+            "value": "quote-fs-36px"
+          },
+          {
+            "name": "Font size: 32px",
+            "value": "quote-fs-32px"
+          },
+          {
+            "name": "Font size: 28px",
+            "value": "quote-fs-28px"
+          },
+          {
+            "name": "Font size: 24px",
+            "value": "quote-fs-24px"
+          },
+          {
+            "name": "Font size: 20px",
+            "value": "quote-fs-20px"
+          },
+          {
+            "name": "Font size: 16px",
+            "value": "quote-fs-16px"
+          },
+          {
+            "name": "Font size: 14px",
+            "value": "quote-fs-14px"
           }
         ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt text"
       },
       {
         "component": "richtext",
         "name": "quote",
         "label": "Quote",
         "valueType": "string"
-      },
-      {
-        "component": "select",
-        "name": "classes_quotertefontsize",
-        "label": "Quote Font Size",
-        "description": "Select the font size for the quote",
-        "value": "quote-fs-36px",
-        "options": [
-          {
-            "name": "60px",
-            "value": "quote-fs-60px"
-          },
-          {
-            "name": "48px",
-            "value": "quote-fs-48px"
-          },
-          {
-            "name": "36px",
-            "value": "quote-fs-36px"
-          },
-          {
-            "name": "24px",
-            "value": "quote-fs-24px"
-          },
-          {
-            "name": "16px",
-            "value": "quote-fs-16px"
-          }
-        ]
       },
       {
         "component": "text",
