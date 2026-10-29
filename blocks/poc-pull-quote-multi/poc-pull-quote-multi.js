@@ -24,11 +24,12 @@ export default async function decorate(block) {
   const alignment = readOption(classes, /^icon-align-(.+)$/, 'left');
   const fontSize = readOption(classes, /^quote-fs-(.+)$/, '36px');
 
-  // Positional contract, same as Lilly: [image, quote, author]
-  const [imageDiv, quoteDiv, authorDiv] = [...block.children];
+  // One field per row: [image, quote, author text, author title]
+  const [imageDiv, quoteDiv, authorTextDiv, authorTitleDiv] = [...block.children];
   const picture = imageDiv?.querySelector('picture');
   const quote = quoteDiv?.firstElementChild;
-  const [author, authorTitle] = authorDiv?.querySelectorAll('p') || [];
+  const author = authorTextDiv?.firstElementChild;
+  const authorTitle = authorTitleDiv?.firstElementChild;
 
   const wrapper = document.createElement('div');
   wrapper.className = 'quote-wrapper';

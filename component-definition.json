@@ -282,7 +282,8 @@
           "model": "poc-pull-quote-multi",
           "plugins": {
             "da": {
-              "unsafeHTML": "<div class=\"poc-pull-quote-multi\"><div><div><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture></div></div><div><div><p></p></div></div><div><div><p></p><p></p></div></div></div>",
+              "rows": 4,
+              "columns": 0,
               "fields": [
                 {
                   "name": "image",
@@ -298,11 +299,11 @@
                 },
                 {
                   "name": "pullquote_authortext",
-                  "selector": "div:nth-child(3)>div>p:nth-child(1)"
+                  "selector": "div:nth-child(3)>div"
                 },
                 {
                   "name": "pullquote_authortitle",
-                  "selector": "div:nth-child(3)>div>p:nth-child(2)"
+                  "selector": "div:nth-child(4)>div"
                 },
                 {
                   "name": "classes",
