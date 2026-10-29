@@ -1,47 +1,202 @@
-.poc-pull-quote-multi figure {
+/* Mirrors src/pull-quote/pull-quote.css in the Lilly repo; --lds-g-* tokens are inlined with their values. */
+.poc-pull-quote-multi {
+  --poc-red: #d52b1e;
+  --poc-grey: #6a6a6a;
+  --poc-gap: 9rem;
+  --poc-font: ringside, "Ringside Fallback", "Helvetica Neue", arial, sans-serif;
+
+  font-family: var(--poc-font);
+}
+
+.poc-pull-quote-multi .quote-wrapper {
   display: flex;
-  gap: 24px;
-  margin: 0 auto;
-  max-width: 900px;
-  padding: 0 24px;
+  align-items: center;
+  width: 100%;
+  gap: var(--poc-gap);
 }
 
-.poc-pull-quote-multi figure:not(:has(.poc-pull-quote-media)) {
-  display: block;
-}
-
-.poc-pull-quote-multi.icon-align-center figure {
-  text-align: center;
-}
-
-.poc-pull-quote-multi.image-quote-block.align-right figure {
+.poc-pull-quote-multi .quote-wrapper.image-right {
   flex-direction: row-reverse;
 }
 
-.poc-pull-quote-multi .poc-pull-quote-media img {
-  max-width: 240px;
+.poc-pull-quote-multi .quote-image img {
+  width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 100%;
+  border-radius: 1.5rem;
 }
 
-.poc-pull-quote-multi figcaption {
+.poc-pull-quote-multi .quote-text {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-top: 16px;
-}
-
-/* Default size when no quote-fs-* option is selected, same as the Lilly parser default. */
-.poc-pull-quote-multi blockquote {
+  align-items: flex-start;
+  width: 100%;
   margin: 0;
-  font-size: 36px;
+  text-align: left;
 }
 
-.poc-pull-quote-multi.quote-fs-100px blockquote { font-size: 100px; }
-.poc-pull-quote-multi.quote-fs-60px blockquote { font-size: 60px; }
-.poc-pull-quote-multi.quote-fs-48px blockquote { font-size: 48px; }
-.poc-pull-quote-multi.quote-fs-36px blockquote { font-size: 36px; }
-.poc-pull-quote-multi.quote-fs-32px blockquote { font-size: 32px; }
-.poc-pull-quote-multi.quote-fs-28px blockquote { font-size: 28px; }
-.poc-pull-quote-multi.quote-fs-24px blockquote { font-size: 24px; }
-.poc-pull-quote-multi.quote-fs-20px blockquote { font-size: 20px; }
-.poc-pull-quote-multi.quote-fs-16px blockquote { font-size: 16px; }
-.poc-pull-quote-multi.quote-fs-14px blockquote { font-size: 14px; }
+.poc-pull-quote-multi .quote-text.ta-center {
+  text-align: center;
+}
+
+.poc-pull-quote-multi .quote-text.ai-center {
+  align-items: center;
+}
+
+/* Stand-in for eds/assets/icons/quoteicon.png (88x56 red quote marks) */
+.poc-pull-quote-multi .icon-quote {
+  display: block;
+  width: 88px;
+  height: 56px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  color: var(--poc-red);
+  font: 900 150px/1 georgia, "Times New Roman", serif;
+}
+
+.poc-pull-quote-multi .icon-quote::before {
+  content: "\201C";
+  display: block;
+  margin-top: -8px;
+}
+
+.poc-pull-quote-multi .quote-content {
+  margin: 0 0 24px;
+}
+
+.poc-pull-quote-multi .quote-content > * {
+  margin: 0;
+}
+
+.poc-pull-quote-multi .quote-content ul,
+.poc-pull-quote-multi .quote-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.poc-pull-quote-multi .quote-content li {
+  margin-bottom: 0.625em;
+  margin-left: 1rem;
+}
+
+.poc-pull-quote-multi .quote-author {
+  margin: 0 0 12px;
+  font-weight: 900;
+}
+
+.poc-pull-quote-multi .quote-author-large {
+  font: 900 1.5rem/1.33 var(--poc-font);
+}
+
+.poc-pull-quote-multi .quote-author-small {
+  font: 900 1.25rem/1.875rem var(--poc-font);
+}
+
+.poc-pull-quote-multi .quote-author-title {
+  margin: 0;
+  color: var(--poc-grey);
+  font: 400 1rem/1.5rem var(--poc-font);
+}
+
+/* Typography classes that applyFontStyle() adds in Lilly (desktop values) */
+.poc-pull-quote-multi .poc-body-small {
+  font: 400 0.875rem/1.25rem var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-body-medium {
+  font: 400 1rem/1.5rem var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-body-large {
+  font: 400 1.25rem/1.875rem var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-heading-6 {
+  font: 400 1.5rem/1.33 var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-heading-5 {
+  font: 400 1.75rem/1.29 var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-heading-4 {
+  font: 400 2rem/1.19 var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-heading-3 {
+  font: 400 2.25rem/1.22 var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-heading-2 {
+  font: 400 3rem/1.21 var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-heading-1 {
+  font: 400 3.75rem/1.1 var(--poc-font);
+}
+
+.poc-pull-quote-multi .poc-display-extra-large {
+  font: 400 6.25rem/1.1 var(--poc-font);
+}
+
+@media (width <= 1024px) {
+  .poc-pull-quote-multi .quote-wrapper {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .poc-pull-quote-multi .quote-image {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+
+  .poc-pull-quote-multi .icon-quote {
+    width: 62px;
+    height: 40px;
+    margin-bottom: 16px;
+    font-size: 106px;
+  }
+
+  .poc-pull-quote-multi .icon-quote::before {
+    margin-top: -6px;
+  }
+
+  .poc-pull-quote-multi .quote-author-large {
+    font: 900 1.25rem/1.3 var(--poc-font);
+  }
+
+  .poc-pull-quote-multi .quote-author-small {
+    font: 900 1.125rem/1.875rem var(--poc-font);
+  }
+
+  .poc-pull-quote-multi .poc-body-large {
+    font: 400 1.125rem/1.875rem var(--poc-font);
+  }
+
+  .poc-pull-quote-multi .poc-heading-6 {
+    font: 400 1.25rem/1.3 var(--poc-font);
+  }
+
+  .poc-pull-quote-multi .poc-heading-5 {
+    font: 400 1.5rem/1.33 var(--poc-font);
+  }
+
+  .poc-pull-quote-multi .poc-heading-4 {
+    font: 400 1.75rem/1.21 var(--poc-font);
+  }
+
+  .poc-pull-quote-multi .poc-heading-3 {
+    font: 400 2rem/1.19 var(--poc-font);
+  }
+
+  .poc-pull-quote-multi .poc-heading-2 {
+    font: 400 2.25rem/1.22 var(--poc-font);
+  }
+
+  .poc-pull-quote-multi .poc-heading-1 {
+    font: 400 2.5rem/1.1 var(--poc-font);
+  }
+}
