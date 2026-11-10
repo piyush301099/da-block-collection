@@ -1,4 +1,4 @@
-import { fetchBlockConfig, fetchBlockSource } from './fetch-config.js';
+import { fetchBlockConfig, fetchBlockSource, fetchLibraryEditorConfig } from './fetch-config.js';
 
 const DEFAULT_ITEM_COUNT = 3;
 
@@ -55,6 +55,18 @@ export const TOOLS = [
       properties: {
         ...commonProperties,
         blockName: { type: 'string', description: 'Block folder name, e.g. "table" or "cards".' },
+      },
+      required: ['org', 'site', 'blockName'],
+    },
+  },
+  {
+    name: 'get_block_multi_status',
+    description: 'Check whether a container block (e.g. Cards, Carousel, Accordion) is registered as "multi" in the site\'s Library index editor sheet (docs/library/blocks.json). This determines whether its Library document\'s fields metadata should describe every item row or collapse to just the first item\'s schema. Always call this before assuming multi status — never infer it from row count or block name.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        ...commonProperties,
+        blockName: { type: 'string', description: 'Block folder/base name (no variant), e.g. "cards" or "carousel".' },
       },
       required: ['org', 'site', 'blockName'],
     },
@@ -314,6 +326,34 @@ export async function getBlockSource({
   return textResult(sections.join('\n\n'));
 }
 
+export async function getBlockMultiStatus({
+  org, site, env, ref, blockName,
+}) {
+  const editorRows = await fetchLibraryEditorConfig({
+    org, site, env, ref,
+  });
+
+  if (editorRows === null) {
+    return textResult(
+      `No Library index editor sheet found for ${org}/${site} (expected at docs/library/blocks.json).`
+      + ' Multi status is unknown — ask the user to confirm, or register this block there if they'
+      + ' want it treated as a repeating/multi container.',
+    );
+  }
+
+  const needle = blockName.trim().toLowerCase();
+  const isMulti = editorRows.some(
+    (row) => (row.block || '').trim().toLowerCase() === needle
+      && (row.property || '').trim().toLowerCase() === 'multi',
+  );
+
+  return textResult(
+    isMulti
+      ? `"${blockName}" IS registered as "multi" in the Library index editor sheet.`
+      : `"${blockName}" is NOT registered as "multi" in the Library index editor sheet.`,
+  );
+}
+
 export async function callTool(name, args) {
   switch (name) {
     case 'list_blocks':
@@ -324,6 +364,8 @@ export async function callTool(name, args) {
       return getBlockMarkdownTemplate(args);
     case 'get_block_source':
       return getBlockSource(args);
+    case 'get_block_multi_status':
+      return getBlockMultiStatus(args);
     default:
       return { content: [{ type: 'text', text: `Unknown tool: ${name}` }], isError: true };
   }

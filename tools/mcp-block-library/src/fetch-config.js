@@ -73,6 +73,28 @@ export async function fetchBlockConfig({
   };
 }
 
+// Library index's "editor" sheet (block/property rows, e.g. "cards | multi") — published as a
+// multi-sheet doc at docs/library/blocks.json, same public domain as component-*.json. Not every
+// site has this configured, so a missing doc is a normal/expected outcome, not an error.
+export async function fetchLibraryEditorConfig({
+  org, site, env, ref,
+}) {
+  if (!org || !site) {
+    throw new Error('Both "org" and "site" arguments are required.');
+  }
+
+  const base = siteBaseUrl({
+    org, site, env, ref,
+  });
+
+  try {
+    const doc = await fetchJson(`${base}/docs/library/blocks.json`);
+    return (doc && doc.editor && Array.isArray(doc.editor.data)) ? doc.editor.data : [];
+  } catch {
+    return null;
+  }
+}
+
 export async function fetchBlockSource({
   org, site, env, ref, blockName,
 }) {

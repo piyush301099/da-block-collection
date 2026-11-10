@@ -9,12 +9,12 @@ metadata:
 
 You help authors pick and correctly fill in blocks for this site via the
 `block-library` MCP tools (`list_blocks`, `get_block_fields`,
-`get_block_markdown_template`, `get_block_source`). These tools are
-**read-only** — they only fetch the site's own published
+`get_block_markdown_template`, `get_block_source`, `get_block_multi_status`).
+These tools are **read-only** — they only fetch the site's own published
 `component-definition.json` / `component-models.json` / `component-filters.json`,
-or a block's own `.js`/`.css` source. Inserting or updating content in a
-document is a separate, explicit step using the built-in `da_create_source` /
-`da_update_source` tools.
+a block's own `.js`/`.css` source, or the Library index's `editor` sheet.
+Inserting or updating content in a document is a separate, explicit step
+using the built-in `da_create_source` / `da_update_source` tools.
 
 ## Core rules
 
@@ -103,6 +103,7 @@ document is a separate, explicit step using the built-in `da_create_source` /
    ```
    library-metadata
    name | <variant display label>
+   fields | <nested fields table — see below>
 
    <blockname[ (modifier, ...)]>
    <block content for that variant>
@@ -115,6 +116,155 @@ document is a separate, explicit step using the built-in `da_create_source` /
    was `table (striped, bordered)` — comma, not "&"). Include one such pair
    for the default/unmodified block too, with `name` equal to the plain block
    title.
+   **Always add a `fields` row too — this powers the separate "Block editor
+   extension" sidebar feature, not just the variant picker.** Its value is a
+   nested table built from that exact variant's drafted content, not a
+   generic schema dump.
+
+   **The single most common mistake, stated up front because it keeps
+   recurring: a richtext cell with multiple elements (e.g. a heading plus a
+   paragraph) is NOT one label just because one UE field name (like `text`)
+   covers that whole cell.** Count distinct block-level elements actually
+   present in the content, never UE schema fields, when deciding how many
+   labels a cell needs — a single field can and often does need multiple
+   stacked labels. This rule overrides any instinct to match label count to
+   field count; re-check it specifically whenever a cell is `richtext`.
+
+   Build the table using this exact procedure, in order — do
+   not skip steps, reorder them, or substitute your own shortcut for the
+   step 5 verification:
+   1. **Finish drafting the actual block content for this variant/item
+      first.** Do not start the `fields` table until the content's real
+      row/cell/element structure is fully decided — `get_block_fields`'s
+      schema only tells you how many UE fields exist, not how many elements
+      you will actually author inside a given cell, so writing `fields`
+      straight from the schema before the content is decided is exactly how
+      a schema-only count (e.g. one `Text` label) ends up not matching
+      content you later draft with more structure in it (e.g. a heading
+      plus a paragraph). This applies to **any** field type, not only
+      `richtext` — richtext is just the most common case here because it's
+      the only component type that can legitimately hold multiple distinct
+      block-level elements in one field.
+   2. **Re-read the block content you just drafted as literal text, not from
+      memory of what you intended to write** — treat it the same way you
+      would treat someone else's document handed to you: scan the actual
+      rows/cells on the page. From that literal re-read, list the content's
+      real grid shape: how many rows (excluding the block-name/variant
+      header row) and how many cells per row. This is fixed by the
+      divs/columns you actually drafted in step 1, confirmed by re-reading
+      them just now — it is not a choice to make here, and relying on your
+      recollection of step 1 instead of re-reading it is exactly how a
+      drafted heading-plus-paragraph quietly gets remembered as "just one
+      text field."
+   3. **For each cell, in content order, list every distinct countable
+      element inside it as its own separate label** — one per heading, one
+      per paragraph (even if there are several), one per image/picture, one
+      for a whole list (never one per list item), one per blockquote's
+      inner text block(s), and **one per standalone block-level link/CTA**
+      (e.g. an `<a>` sitting on its own line like a button — `<a href="...">
+      Learn More</a>` — not wrapped in a `<p>`) — this counts the same as a
+      link-only paragraph, just without the `<p>` wrapper; don't let the
+      missing wrapper tag make you skip it. Inline formatting/links *inside*
+      a paragraph (e.g. a link mid-sentence) don't get their own label — the
+      paragraph itself gets the label. Never skip or drop an element you
+      drafted, including a link-only paragraph or a bare CTA anchor. Empty
+      spacer paragraphs around image-only content need no label.
+      - **Never reuse one generic label for two different elements just
+        because they share a UE field name** (e.g. a `text` field's heading
+        and paragraph both labeled `Text`, producing `Text` / `Text`) — give
+        each element its own specific, descriptive label (`Heading`, `Text`,
+        `Link`, etc.) so the two lines are actually distinguishable.
+        - ✅ correct: `Heading` *(newline)* `Text`
+        - ❌ wrong: `Text` *(newline)* `Text` — same label repeated, not
+          descriptive of what each line actually is.
+      - **An image and its alt-text field are two separate UE schema
+        fields (e.g. `backgroundImage` + `backgroundImageAlt`, or
+        `image` + `imageAlt`) but describe the SAME one `<picture>`/`<img>`
+        element — count them as exactly ONE label, never two.** This is the
+        single most common two-schema-fields-one-element case in this
+        project (Hero, Testimonial, Cards, Carousel all have this pattern).
+        Check this specifically before finalizing any row that contains an
+        image — don't let two UE field names talk you into two rows/labels
+        for what is structurally one picture.
+        - ✅ correct: one row, one cell, one label — `Image`
+        - ❌ wrong: splitting into two rows/labels — `Background Image` /
+          `Background Image Alt`
+   4. **Write the table**: first row = a single cell containing exactly the
+      lowercase word `fields` (never `Fields` or any other casing), spanning
+      the table's columns; then one row per step-2 row, each cell
+      holding its step-3 labels as **separate stacked paragraphs, one label
+      per line, in order** — never merge multiple labels into one combined
+      string.
+      - **"Spanning the table's columns" means one real merged cell, not an
+        empty cell plus a `fields` cell.** If the table has N columns (N>1),
+        write the header row as a single actual merged cell (e.g.
+        `<tr><td colspan="N">fields</td></tr>` if authoring raw HTML, matching
+        Adobe's own reference example), never a row where one cell is blank
+        and `fields` sits in another — that is not a spanning cell, it's a
+        mostly-empty row, and fails sidebar validation. For a 1-column block,
+        it's already a single cell — no `colspan` attribute is needed at all.
+        - ✅ correct (2-column table): one merged cell containing `fields`,
+          spanning both columns.
+        - ❌ wrong: an empty first cell, then `fields` in the second cell —
+          looks similar but is structurally two cells, not one.
+      - ✅ correct — two elements in one cell become two stacked lines in
+        that same cell: `Heading` *(newline)* `Text`
+      - ❌ wrong — merging them into one descriptive label string:
+        `Heading Text` or `Text (Heading + Description)`
+      - ❌ wrong — splitting them into a second cell or a second row instead
+        of keeping them stacked in the one real cell they came from.
+   5. **Before finishing, re-scan the literal content text one more time —
+      not your memory of steps 1-4 — and verify point by point against
+      that literal text:** (a) the `fields` table has the exact same row
+      count as the real content (not more, not fewer); (b) each row has the
+      exact same cell count as the matching real content row; (c) every
+      element you can see in the literal text appears as its own separate
+      stacked-paragraph label — none merged into a combined string, none
+      silently dropped; (d) label text uses `get_block_fields`'s real
+      labels (or `IGNORE`, see below), not raw field `name`s/selectors;
+      (e) no image+alt pair was split into two rows/labels — every image is
+      exactly one label; (f) the header row is one real merged cell
+      spanning all columns, not an empty cell plus a `fields` cell, and its
+      text is the exact lowercase word `fields`; (g) no two different
+      elements in the same cell share one repeated generic label (e.g.
+      `Text` / `Text`) — especially re-check this for every `richtext` cell,
+      since that's where this specific mistake keeps recurring. If any check
+      fails, fix
+      the table before presenting it — do not publish a "close enough"
+      version.
+   - **If this variant's `library-metadata` already has a non-empty
+     `fields` entry, report its current value instead of silently
+     overwriting it.** Only replace it if the user explicitly asks for a
+     correction, or if you can show it's provably wrong (e.g. a row/cell
+     count mismatch against the real content, or a missing label) — and say
+     so explicitly when you do. This only applies to a pre-existing
+     non-empty entry; a missing or empty `fields` entry should still always
+     be filled in per the rest of this procedure.
+   - **Use `IGNORE` as a label exactly where this specific variant's drafted
+     content leaves that field's position empty/unused** (e.g. a "no image"
+     variant still has the image row's position, just unused) — keep the
+     row/cell position, don't delete it, or every later field's position
+     shifts out of alignment with the real content.
+   - **Container blocks (Cards, Accordion, Carousel, etc.)**: `multi` status
+     comes **only** from the block's own entry in the site's Library index
+     `editor` sheet (a separate, one-time, site-wide registration, not part
+     of this document) — **never infer it from row count, similar-looking
+     repeated rows, the block name, or the presence of a list.** **Always
+     call `get_block_multi_status` first to check this** — don't ask the
+     user before trying it yourself. Only if that tool reports no editor
+     sheet exists for this site should you ask the user rather than
+     guessing, and default to describing every item row you actually
+     drafted (not 2 rows) until they confirm `multi` is registered. Once
+     confirmed `multi` (by the tool or by the user): **do not
+     summarize or collapse the drafted items into one — instead, re-read
+     and inspect ONLY the first item you drafted, and ignore every other
+     item entirely**, as if the 2nd/3rd/etc. items don't exist for this
+     purpose. Build the `fields` table's one item-row from that single
+     re-read item alone. The result is still exactly 2 rows (the `fields`
+     header plus this one item row), but reached by narrowing attention to
+     one item rather than by summarizing several — summarizing multiple
+     items into "one shared schema" is exactly the kind of fuzzy merge that
+     has produced wrong combined labels before.
 9. **Treat multiple modifier classes found on the same block as independently
    combinable unless the CSS/JS shows otherwise** (e.g. one modifier's
    selector negating another). When asked for "all"/"different" variations
@@ -145,6 +295,7 @@ document is a separate, explicit step using the built-in `da_create_source` /
 | `get_block_fields` | `org`, `site`, `blockName` | `env`, `ref` |
 | `get_block_markdown_template` | `org`, `site`, `blockName` | `env`, `ref`, `itemCount` |
 | `get_block_source` | `org`, `site`, `blockName` | `env`, `ref` |
+| `get_block_multi_status` | `org`, `site`, `blockName` | `env`, `ref` |
 
 `blockName` accepts either the block's display title (e.g. "Hero") or its id
 (e.g. "hero").
@@ -167,7 +318,9 @@ document is a separate, explicit step using the built-in `da_create_source` /
   (Core rule 9)
 - "create a library document with all variations of X" → build one document
   covering every variant (including the plain default), each as its own
-  `library-metadata` + block pair separated by section breaks (Core rule 8)
+  `library-metadata` + block pair separated by section breaks, **with a
+  `fields` row in every `library-metadata` table, always, not just `name`**
+  (Core rule 8)
 
 ## Notes
 
